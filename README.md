@@ -16,9 +16,14 @@ mkdir -p /devdata/nexus
 docker run -v /devdata/nexus:/opt/sonatype-work -p 8081:8081 -name nexus griff/sonatype-nexus
 ```
 
-Options
+Options / Environment variables
 --------
-NEXUS_WEBAPP_CONTEXT_PATH
-The prefix the webapp uses when starting the server. Defaults to /nexus.
-Setting it to / will cause the url to use in your browser to be http://localhost:8081/
+The image supports an option NEXUS_WEBAPP_CONTEXT_PATH which you can set as an
+environment variable when running the image that sets the URL prefix the
+webapp uses when starting the server. Defaults to /nexus. 
 
+An example usage with the option:
+```
+docker run -e NEXUS_WEBAPP_CONTEXT_PATH=/ griff/sonatype-nexus
+```
+Which changes the URL to http://localhost:8081/
