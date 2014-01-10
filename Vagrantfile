@@ -7,12 +7,6 @@ VAGRANTFILE_API_VERSION = "2"
 $script = <<SCRIPT
 set -e
 export DEBIAN_FRONTEND=noninteractive
-if [ -z "$(grep docker /etc/group)" ]; then
-  groupadd --system docker
-fi
-if [ -z "$(groups vagrant | grep docker)" ]; then
-  usermod -G docker -a vagrant
-fi
 if [ ! -f "/etc/apt/sources.list.d/docker.list" ]; then
   # Add docker repository
   wget -q -O - http://get.docker.io/gpg | apt-key add -
@@ -22,6 +16,12 @@ apt-get update -qq
 apt-get -q -y install linux-image-extra-`uname -r` lxc-docker
 if [ -z "$(grep "cgroup_enable=memory swapaccount=1" /etc/default/grub)" ]; then
   sed -Ei \'s/^(GRUB_CMDLINE_LINUX_DEFAULT)=.+/\\1="cgroup_enable=memory swapaccount=1 quiet"/\' /etc/default/grub
+fi
+if [ -z "$(grep docker /etc/group)" ]; then
+  groupadd --system docker
+fi
+if [ -z "$(groups vagrant | grep docker)" ]; then
+  usermod -G docker -a vagrant
 fi
 SCRIPT
 
