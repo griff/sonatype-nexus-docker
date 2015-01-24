@@ -6,14 +6,14 @@ Docker version of Sonatype Nexus
 Usage
 ------
 ```
-docker run -p 8081:8081 -name nexus griff/sonatype-nexus
+docker run -p 8081:8081 --name nexus griff/sonatype-nexus
 ```
 And then point your browser at http://localhost:8081/nexus/
 
 Or with explicitly specified volume target:
 ```
 mkdir -p /devdata/nexus
-docker run -v /devdata/nexus:/opt/sonatype-work -p 8081:8081 -name nexus griff/sonatype-nexus
+docker run -v /devdata/nexus:/opt/sonatype-work -p 8081:8081 --name nexus griff/sonatype-nexus
 ```
 
 Options / Environment variables
