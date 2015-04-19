@@ -1,4 +1,4 @@
-FROM davidkarlsen/docker-java:8u40
+FROM davidkarlsen/docker-java:8u45
 MAINTAINER David J. M. Karlsen <david@davidkarlsen.com>
 
 RUN mkdir -p /opt/sonatype-nexus /opt/sonatype-work-template /opt/sonatype-work
